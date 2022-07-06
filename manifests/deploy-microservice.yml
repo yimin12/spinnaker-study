@@ -2,26 +2,26 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
     labels:
-        app: medieval-college-microservice
+        app: michael-h-microservice
         stack: frontend
         source: demo
-    name: medieval-college-microservice
+    name: michael-h-microservice
     namespace: microservices
 spec:
     replicas: 5
     selector:
         matchLabels:
-            run: medieval-college-microservice
+            run: michael-h-microservice
     template:
         metadata:
             labels:
-                app: medieval-college-microservice
-                run: medieval-college-microservice
+                app: michael-h-microservice
+                run: michael-h-microservice
                 source: demo
         spec:
             containers:
-                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/medieval-college-microservice
-                    name: medieval-college-microservice
+                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/michael-h-microservice
+                    name: michael-h-microservice
                     ports:
                         -   name: web
                             containerPort: 8080
@@ -31,14 +31,14 @@ kind: Service
 apiVersion: v1
 metadata:
     labels:
-        app: medieval-college-microservice-service
+        app: michael-h-microservice-service
         stack: frontend
-    name: medieval-college-microservice-service
+    name: michael-h-microservice-service
     namespace: microservices
 spec:
     selector:
         source: demo
-        app: medieval-college-microservice
+        app: michael-h-microservice
     ports:
         -   name: web
             protocol: TCP
@@ -54,15 +54,15 @@ metadata:
         stack: frontend
     annotations:
         nginx.ingress.kubernetes.io/rewrite-target: /$2
-    name: medieval-college-ingress
+    name: michael-h-ingress
     namespace: microservices
 spec:
     rules:
         -   http:
                 paths:
-                    -   path: /medieval-college(/|$)(.*)
+                    -   path: /michael-h(/|$)(.*)
                         backend:
-                            serviceName: medieval-college-microservice-service
+                            serviceName: michael-h-microservice-service
                             servicePort: 30201
 
 
